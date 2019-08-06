@@ -5,7 +5,11 @@
         {% if post.author %}
           <p>Published by: <strong class="auth"><a href="">{{ post.author }}</a></strong></p>
         {% endif %}
-        <h2>{{ post.title }}</h2>
+        <h2>{{ post.title }}
+        {% if post.author == request.user %}
+          <a class="btn btn-default" href="{% url 'blog:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+        </h2>
         <p>{{ post.text|linebreaksbr }}</p>
         {% if post.published_date %}
             <div class="date">
